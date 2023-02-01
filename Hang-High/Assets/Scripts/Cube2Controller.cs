@@ -75,13 +75,13 @@ public class Cube2Controller : MonoBehaviour
 
         fixedJoint = gameObject.AddComponent<FixedJoint>();
         fixedJoint.connectedBody = c.rigidbody;
-        fixedJoint.breakForce = 1000f;
+        fixedJoint.breakForce = 3000f;
     }
 
     private IEnumerator hookCooldown()
     {
         canHook = false;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
         canHook = true;
     }
 }
