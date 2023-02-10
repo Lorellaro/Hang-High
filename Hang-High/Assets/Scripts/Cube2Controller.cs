@@ -8,6 +8,10 @@ public class Cube2Controller : MonoBehaviour
     [SerializeField] float upForce;
     [SerializeField] float attachForce;
     [SerializeField] int mouseNum;
+    [SerializeField] GameObject clippedSFX;
+    [SerializeField] GameObject jumpVFX;
+    [SerializeField] GameObject clippedVFX;
+
 
     Vector3 mousePos;
     Rigidbody rb;
@@ -25,8 +29,15 @@ public class Cube2Controller : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(mouseNum) && fixedJoint)
         {
+            //Can't be spam called
+            if (!jump) {
+                //VFX SFX
+                Instantiate(jumpVFX, transform);
+            }
+
             //Jump
             jump = true;
+
             StartCoroutine(disableJump());
 
             Destroy(fixedJoint);
@@ -76,6 +87,10 @@ public class Cube2Controller : MonoBehaviour
         fixedJoint = gameObject.AddComponent<FixedJoint>();
         fixedJoint.connectedBody = c.rigidbody;
         fixedJoint.breakForce = 3000f;
+
+        //Sfx VFX
+        Instantiate(clippedSFX, transform);
+        Instantiate(clippedVFX, transform);
     }
 
     private IEnumerator hookCooldown()
