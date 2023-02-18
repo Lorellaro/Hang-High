@@ -86,7 +86,7 @@ public class Cube2Controller : MonoBehaviour
 
         fixedJoint = gameObject.AddComponent<FixedJoint>();
         fixedJoint.connectedBody = c.rigidbody;
-        fixedJoint.breakForce = 3000f;
+        fixedJoint.breakForce = 7000f;
 
         //Sfx VFX
         Instantiate(clippedSFX, transform);

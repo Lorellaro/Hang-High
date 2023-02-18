@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1162911601502859896}
   - component: {fileID: 6823380582793962184}
   - component: {fileID: 8609840504148652343}
+  - component: {fileID: 8414781460581248188}
   m_Layer: 0
   m_Name: ClipVFX
   m_TagString: Untagged
@@ -4895,7 +4896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 8609840504148652343}
   audioClips:
-  - {fileID: 8300000, guid: c29094fcb44e097478bcd0e3f4a3b5ce, type: 3}
+  - {fileID: 8300000, guid: 28eaa702c8654d74e84a731ed1df5869, type: 3}
   playOnAwake: 1
 --- !u!82 &8609840504148652343
 AudioSource:
@@ -4993,3 +4994,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8414781460581248188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414093062944735794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d6f2b61aadac140a02525feffeff2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 2
