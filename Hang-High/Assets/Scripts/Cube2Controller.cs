@@ -11,11 +11,12 @@ public class Cube2Controller : MonoBehaviour
     [SerializeField] GameObject clippedSFX;
     [SerializeField] GameObject jumpVFX;
     [SerializeField] GameObject clippedVFX;
-
+    [SerializeField] Cube2Controller otherCubeController;
+    [SerializeField] bool hasPriority;
 
     Vector3 mousePos;
     Rigidbody rb;
-    bool jump;
+    public bool jump;
     bool canHook = true;
 
     FixedJoint fixedJoint;
@@ -69,7 +70,8 @@ public class Cube2Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (jump)
+        //only allow one hook to jump at once
+        if (jump && (!otherCubeController.jump || hasPriority))
         {
             rb.velocity += mousePos * upForce * Time.deltaTime;
         }
