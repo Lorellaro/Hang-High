@@ -21,6 +21,13 @@ public class GiveRandomAudioClip : MonoBehaviour
     {
         int randomNum = Random.Range(0, audioClips.Count);
         audioSource.clip = audioClips[randomNum];
+        RandomisePitch();
         audioSource.Play();
+    }
+
+    private void RandomisePitch()
+    {
+        float randomPitch = Random.Range(0.75f, 1.25f);
+        audioSource.pitch = randomPitch;
     }
 }

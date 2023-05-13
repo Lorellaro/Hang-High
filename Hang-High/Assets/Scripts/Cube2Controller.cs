@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MainGame.Cameras;
 
 public class Cube2Controller : MonoBehaviour
 {
@@ -9,21 +10,25 @@ public class Cube2Controller : MonoBehaviour
     [SerializeField] float attachForce;
     [SerializeField] int mouseNum;
     [SerializeField] GameObject clippedSFX;
+    [SerializeField] GameObject unClippedVFX;
     [SerializeField] GameObject jumpVFX;
     [SerializeField] GameObject clippedVFX;
     [SerializeField] Cube2Controller otherCubeController;
     [SerializeField] bool hasPriority;
+    [SerializeField] LayerMask unAttachableLayers;
 
     Vector3 mousePos;
     Rigidbody rb;
     public bool jump;
     bool canHook = true;
+    CameraShakeHandler cameraShakeHandler;
 
     FixedJoint fixedJoint;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        cameraShakeHandler = CameraShakeHandler.Instance;
     }
 
     private void Update()
@@ -33,7 +38,8 @@ public class Cube2Controller : MonoBehaviour
             //Can't be spam called
             if (!jump) {
                 //VFX SFX
-                Instantiate(jumpVFX, transform);
+                Instantiate(unClippedVFX, transform);
+                cameraShakeHandler.BasicShake();
             }
 
             //Jump
@@ -47,7 +53,7 @@ public class Cube2Controller : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
         }
 
         mousePos = Input.mousePosition;
@@ -84,15 +90,19 @@ public class Cube2Controller : MonoBehaviour
         //if already has joint return
         if (fixedJoint) { return; }
         //if  hit self return
-        if(c.gameObject.layer == LayerMask.NameToLayer("Chain") || c.gameObject.layer == LayerMask.NameToLayer("Player End")) { return; }
+        //if(c.gameObject.layer == LayerMask.NameToLayer("Chain") || c.gameObject.layer == LayerMask.NameToLayer("Player End")) { return; }
+        if(unAttachableLayers == (unAttachableLayers | (1 << c.gameObject.layer))) { return; }
 
         fixedJoint = gameObject.AddComponent<FixedJoint>();
         fixedJoint.connectedBody = c.rigidbody;
-        //fixedJoint.breakForce = 7000f;
+        fixedJoint.breakForce = 20000f;
 
         //Sfx VFX
         Instantiate(clippedSFX, transform);
         Instantiate(clippedVFX, transform);
+        
+        //Cam Shake
+        cameraShakeHandler.BasicShake();
     }
 
     private IEnumerator hookCooldown()

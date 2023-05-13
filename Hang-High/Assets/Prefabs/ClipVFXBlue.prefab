@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1162911601502859896}
   - component: {fileID: 6823380582793962184}
   - component: {fileID: 8609840504148652343}
+  - component: {fileID: 6472684538776836616}
   m_Layer: 0
   m_Name: ClipVFXBlue
   m_TagString: Untagged
@@ -4993,3 +4994,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6472684538776836616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414093062944735794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d6f2b61aadac140a02525feffeff2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 3
